@@ -7,16 +7,16 @@ A bank wants to launch 2 new credit card products, C1 and C2. To receive applica
 2. Address
 3. Email id
 
-The submission of this form will be received by a 10x API and sent over to a Thirdparty service for eligibility decisioning. The Thirdparty provides a RESTful api which responds with one of the following eligibilities:
+The submission of this form will be received by a TL API and sent over to a Thirdparty service for eligibility decisioning. The Thirdparty provides a RESTful api which responds with one of the following eligibilities:
 
 1. C1
 2. C2
 3. Both C1 and C2
 4. Neither C1 nor C2
 
-The 10x APIs should receive the response from the Thirdparty and update the user with the result of their application.
+The TL APIs should receive the response from the Thirdparty and update the user with the result of their application.
 
-Build a synchronous 10x API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
+Build a synchronous TL API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
 
 ##
 Thirdparty contract:
