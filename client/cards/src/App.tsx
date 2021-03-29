@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import styled from "styled-components";
-import FormInput from "./design-system/FormInput";
-import SubmitButton from "./design-system/SubmitButton";
+import FormInput from "./DesignSystem/FormInput";
+import SubmitButton from "./DesignSystem/SubmitButton";
 
 const AppWrapper = styled.div`
   display: flex;
