@@ -26,7 +26,8 @@ interface InputProps {
   type: string;
   name: string;
   id: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<any>) => void;
+  value: string;
 }
 
 const FormInput = (props: InputProps) => {

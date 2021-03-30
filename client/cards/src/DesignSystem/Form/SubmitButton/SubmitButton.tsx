@@ -29,15 +29,12 @@ const Button = styled.button`
 
 interface SubmitButtonProps {
   text: string;
-  onSubmit: () => void;
 }
 
-const SubmitButton = ({ text, onSubmit }: SubmitButtonProps) => {
+const SubmitButton = ({ text }: SubmitButtonProps) => {
   return (
     <ButtonWrapper>
-      <Button type="submit" onSubmit={onSubmit}>
-        {text}
-      </Button>
+      <Button type="submit">{text}</Button>
     </ButtonWrapper>
   );
 };
