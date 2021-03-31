@@ -2,13 +2,13 @@ import React from "react";
 import { useFormik } from "formik";
 import styled from "styled-components";
 
-import FormInput from "../../DesignSystem/Form/FormInput";
-import SubmitButton from "../../DesignSystem/Form/SubmitButton";
-import Title from "../../DesignSystem/Title";
+import FormInput from "../../../DesignSystem/Form/FormInput";
+import SubmitButton from "../../../DesignSystem/Form/SubmitButton";
+import Title from "../../../DesignSystem/Title";
 
 const FormWrapper = styled.div`
-  flex: 0 0 auto;
-  width: 600px;
+  flex: 1 1 auto;
+  width: 100%;
 `;
 
 interface FormValues {
@@ -17,7 +17,7 @@ interface FormValues {
   address: string;
 }
 
-const CardsForm = () => {
+const EligibilityApplication = () => {
   const { handleChange, handleSubmit, values } = useFormik<FormValues>({
     initialValues: {
       name: "",
@@ -36,6 +36,7 @@ const CardsForm = () => {
           id="name"
           onChange={handleChange}
           value={values.name}
+          placeholder="Name"
         />
         <FormInput
           type="email"
@@ -43,6 +44,7 @@ const CardsForm = () => {
           id="email"
           onChange={handleChange}
           value={values.email}
+          placeholder="Email"
         />
         <FormInput
           type="text"
@@ -50,6 +52,7 @@ const CardsForm = () => {
           id="address"
           onChange={handleChange}
           value={values.address}
+          placeholder="Address"
         />
         <SubmitButton text="Submit" />
       </form>
@@ -57,4 +60,4 @@ const CardsForm = () => {
   );
 };
 
-export default CardsForm;
+export default EligibilityApplication;

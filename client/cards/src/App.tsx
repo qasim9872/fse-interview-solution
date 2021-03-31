@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CardsForm from "./Views/CardsForm";
+import Eligibility from "./Views/Eligibility";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const AppWrapper = styled.div`
 const App = () => {
   return (
     <AppWrapper>
-      <CardsForm />
+      <Eligibility />
     </AppWrapper>
   );
 };

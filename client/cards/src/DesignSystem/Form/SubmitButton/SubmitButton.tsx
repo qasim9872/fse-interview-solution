@@ -25,6 +25,12 @@ const Button = styled.button`
   :active {
     background-color: #0a2b7b;
   }
+  :hover {
+    background-color: #1e4ebe;
+  }
+  :focus {
+    outline: #0a2b7b auto 2px;
+  }
 `;
 
 interface SubmitButtonProps {

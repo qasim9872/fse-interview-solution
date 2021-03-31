@@ -28,6 +28,7 @@ interface InputProps {
   id: string;
   onChange: (e: React.ChangeEvent<any>) => void;
   value: string;
+  placeholder?: string;
 }
 
 const FormInput = (props: InputProps) => {
