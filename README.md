@@ -19,8 +19,8 @@ The TL APIs should receive the response from the Thirdparty and update the user 
 
 ## Task
 
-1. Build a synchronous TL API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
-2. Locate the frontend in /client and implement a call to the API you've just built and display the results using the provided components.
+1. In /server, build a synchronous TL API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
+2. In /client, implement a call to the API you've just built and display the results using the provided components.
 
 ##
 
