@@ -1,7 +1,8 @@
 # Cards Application
 
 ## Problem statement
-A bank wants to launch 2 new credit card products, C1 and C2. To receive applications for the products the bank will collect the following detail about the *applicant* in a web-form or mobile app, which the bank provides:
+
+A bank wants to launch 2 new credit card products, C1 and C2. To receive applications for the products the bank will collect the following detail about the _applicant_ in a web-form or mobile app, which the bank provides:
 
 1. Name
 2. Address
@@ -16,12 +17,16 @@ The submission of this form will be received by a TL API and sent over to a Thir
 
 The TL APIs should receive the response from the Thirdparty and update the user with the result of their application.
 
-Build a synchronous TL API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
+## Task
+
+1. In /server, build a synchronous TL API to orchestrate the journey from the application submission to retrival of response. The API should call the provided Thirdparty endpoint over HTTP.
+2. In /client, implement a call to the API you've just built and display the results using the provided components.
 
 ##
+
 Thirdparty contract:
 
-*Request*
+_Request_
 
 ```
 POST /eligibility/check
@@ -29,21 +34,22 @@ POST /eligibility/check
 
 ```json
 {
-    "name": "String",
-    "email": "String",
-    "address": "String"
+  "name": "String",
+  "email": "String",
+  "address": "String"
 }
 ```
 
-*Response*
+_Response_
 
 ```json
 {
-    "eligibleCards": "Array of C1, C2, BOTH or None"
+  "eligibleCards": "Array of C1, C2, BOTH or None"
 }
 ```
 
 ## Considerations (only for Solution Design section):
+
 1. The bank believes that the products would be extremely popular and around 1 million requests will be received in the first hour, tailing off from there
 2. The Thirdparty might take up to 10secs to respond to the request
 3. The processed applications and results need to be stored for up to 7 years for audit purposes
