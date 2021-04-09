@@ -1,11 +1,11 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
 import org.springframework.stereotype.Service;
 
-import com.tenx.cards.eligibility.common.domain.Applicant;
-import com.tenx.cards.thirdparty.eligibility.Eligibility.EligibilityBuilder;
+import com.tradeledger.cards.eligibility.common.domain.Applicant;
+import com.tradeledger.cards.thirdparty.eligibility.Eligibility.EligibilityBuilder;
 
-import static com.tenx.cards.thirdparty.eligibility.Eligibility.newEligibility;
+import static com.tradeledger.cards.thirdparty.eligibility.Eligibility.newEligibility;
 
 import java.util.stream.Stream;
 

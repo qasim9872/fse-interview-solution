@@ -1,11 +1,11 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static com.tenx.cards.thirdparty.eligibility.Eligibility.newEligibility;
+import static com.tradeledger.cards.thirdparty.eligibility.Eligibility.newEligibility;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tenx.cards.eligibility.common.domain.Applicant;
+import com.tradeledger.cards.eligibility.common.domain.Applicant;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = EligibilityController.class)

@@ -1,6 +1,6 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
-import static com.tenx.cards.thirdparty.eligibility.Eligibility.newEligibility;
+import static com.tradeledger.cards.thirdparty.eligibility.Eligibility.newEligibility;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

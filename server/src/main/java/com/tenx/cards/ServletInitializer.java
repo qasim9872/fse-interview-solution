@@ -1,4 +1,4 @@
-package com.tenx.cards;
+package com.tradeledger.cards;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

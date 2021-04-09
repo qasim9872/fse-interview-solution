@@ -1,4 +1,4 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
 import java.util.HashSet;
 import java.util.Set;

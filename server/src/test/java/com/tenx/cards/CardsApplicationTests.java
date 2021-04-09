@@ -1,4 +1,4 @@
-package com.tenx.cards;
+package com.tradeledger.cards;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
-import com.tenx.cards.eligibility.common.domain.Applicant;
+import com.tradeledger.cards.eligibility.common.domain.Applicant;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 

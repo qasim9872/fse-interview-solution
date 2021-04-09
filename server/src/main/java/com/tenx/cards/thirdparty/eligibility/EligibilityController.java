@@ -1,4 +1,4 @@
-package com.tenx.cards.thirdparty.eligibility;
+package com.tradeledger.cards.thirdparty.eligibility;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tenx.cards.eligibility.common.domain.Applicant;
+import com.tradeledger.cards.eligibility.common.domain.Applicant;
 
 @RestController
 @RequestMapping("eligibility")
