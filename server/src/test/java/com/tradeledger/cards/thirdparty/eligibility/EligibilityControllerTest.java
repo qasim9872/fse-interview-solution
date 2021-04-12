@@ -44,8 +44,7 @@ public class EligibilityControllerTest {
 					.contentType("application/json")
 					.content(objMapper.writeValueAsString(applicant))
 				)
-		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.eligibleCards", hasSize(2)));
+				.andExpect(status().isOk());
 	}
 	
 }
