@@ -29,6 +29,12 @@ BE
 1. A Microservices with Spring Boot
 2. Build Automation Tool - Gradle
 
+## How to submit the exercise
+
+1. Clone the repo locally. 
+2. Complete the exercise.
+3. Share the link of GitHub repo once done for review.
+
 ## How to Run
 
 Open the project with IntelliJ or Eclipse or any other IDE of your choice
