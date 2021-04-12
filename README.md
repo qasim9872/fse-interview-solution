@@ -46,7 +46,7 @@ FE
 
 BE
 1. Go To terminal.
-2. cd server --- Browse to Directory i.e. server
+2. cd server/cards --- Browse to Directory i.e. server/cards
 
 1. ./gradlew build -- to build the solution
 2. ./gradlew test -- to unit test the solution
