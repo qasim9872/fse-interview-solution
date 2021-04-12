@@ -35,7 +35,7 @@ Open the project with IntelliJ or Eclipse or any other IDE of your choice
 
 FE
 1. Go To terminal.
-2. cd client -- Browse to Directory i.e. client
+2. cd client/cards -- Browse to Directory i.e. client/cards
 
 1. npm run install -- to install the app
 2. npm run test -- to test the app
