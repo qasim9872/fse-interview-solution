@@ -33,7 +33,7 @@ BE
 
 1. Clone the repo locally. 
 2. Complete the exercise.
-3. Share the link of GitHub repo once done for review.
+3. Upload your completed project to your GitHub, and then paste a link to the repository below in the form along with any comments you have about your solution.
 
 ## How to Run
 
