@@ -6,7 +6,8 @@ export const INITIAL_ELIGIBILITY_STATE = {
     email: "",
     address: "",
   },
-  results: {},
+  isReadyToBeSubmitted: false,
+  results: [] as string[],
 };
 
 export const {

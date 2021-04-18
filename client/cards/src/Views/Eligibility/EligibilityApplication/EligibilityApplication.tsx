@@ -5,7 +5,10 @@ import styled from "styled-components";
 import FormInput from "../../../DesignSystem/Form/FormInput";
 import SubmitButton from "../../../DesignSystem/Form/SubmitButton";
 import Title from "../../../DesignSystem/Title";
-import { useEligibilityStoreHook } from "../Eligibility.store";
+import {
+  INITIAL_ELIGIBILITY_STATE,
+  useEligibilityStoreHook,
+} from "../Eligibility.store";
 import { logger } from "../../../utils/logger";
 
 const FormWrapper = styled.div`
@@ -23,17 +26,15 @@ const EligibilityApplication = () => {
   const [eligibilityState, setEligibilityState] = useEligibilityStoreHook();
 
   const { handleChange, handleSubmit, values } = useFormik<FormValues>({
-    initialValues: {
-      name: "",
-      email: "",
-      address: "",
-    },
-    onSubmit: (applicationData) => {
+    initialValues: INITIAL_ELIGIBILITY_STATE.applicationData,
+    onSubmit: (applicationData, { resetForm }) => {
       logger.info("submitting application data", applicationData);
       setEligibilityState((previousState) => ({
         ...previousState,
+        isReadyToBeSubmitted: true,
         applicationData,
       }));
+      resetForm();
     },
   });
 
