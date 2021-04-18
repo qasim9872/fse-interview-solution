@@ -11,12 +11,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import okhttp3.mockwebserver.RecordedRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -29,6 +33,16 @@ public class OrchestratorServiceTest {
 
 	@MockBean
 	private ConfigurationService configurationService;
+
+	@TestConfiguration
+	static class TestConfig {
+
+		@Bean
+		public OkHttpClient httpClient() {
+			return new OkHttpClient();
+		}
+
+	}
 
 	@Autowired
 	private ObjectMapper objMapper;
@@ -47,7 +61,7 @@ public class OrchestratorServiceTest {
 
 		// Ask the server for its URL. You'll need this to make HTTP requests.
 		HttpUrl MOCK_SERVER_BASE_URL = mockServer.url(ConfigurationService.THIRD_PARTY_ELIGIBILITY_CHECK_PATH);
-		String MOCK_SERVER_BASE_URL_WITH_HTTP_SCHEME = "http://" + MOCK_SERVER_BASE_URL.toString();
+		String MOCK_SERVER_BASE_URL_WITH_HTTP_SCHEME = MOCK_SERVER_BASE_URL.toString();
 
 		// mock the url
 		when(configurationService.getThirdPartyEligibilityCheckUrl()).thenReturn(MOCK_SERVER_BASE_URL_WITH_HTTP_SCHEME);
@@ -70,11 +84,17 @@ public class OrchestratorServiceTest {
 		Applicant applicant = new Applicant("Boris", "Boris@J.com", "143 Icy Road");
 		Eligibility eligibility = Eligibility.newEligibility(1).addCard("C1").build();
 
-		mockBackendEndpoint(200, objMapper.writeValueAsString(eligibility));
+		String expectedEligibilityResult = objMapper.writeValueAsString(eligibility);
 
-		// String eligibilityResult =
-		// orchestratorService.orchestrateEligibilityCheck(applicant);
-		// assertEquals(orchestratorService.FullEligibilityCheckUrl, "");
+		mockBackendEndpoint(200, expectedEligibilityResult);
+
+		String eligibilityResult = orchestratorService.orchestrateEligibilityCheck(applicant);
+
+		// confirm that your app made the HTTP requests you were expecting.
+		RecordedRequest request1 = mockServer.takeRequest();
+		assertEquals(ConfigurationService.THIRD_PARTY_ELIGIBILITY_CHECK_PATH, request1.getPath());
+
+		assertEquals(expectedEligibilityResult, eligibilityResult);
 	}
 
 }

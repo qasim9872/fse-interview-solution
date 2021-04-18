@@ -18,8 +18,6 @@ public class OrchestratorService {
 
 	public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-	public String FullEligibilityCheckUrl;
-
 	@Autowired
 	private OkHttpClient httpClient;
 
@@ -33,6 +31,7 @@ public class OrchestratorService {
 
 		RequestBody body = RequestBody.Companion.create(objMapper.writeValueAsString(applicant), JSON);
 		String eligibilityCheckUrl = configurationService.getThirdPartyEligibilityCheckUrl();
+		System.out.println("url is ===> " + eligibilityCheckUrl);
 		Request request = new Request.Builder().url(eligibilityCheckUrl).post(body).build();
 
 		Response response = httpClient.newCall(request).execute();
