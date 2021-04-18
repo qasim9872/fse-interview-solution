@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { ToastContainer } from "react-toastify";
+
 import Eligibility from "./Views/Eligibility";
 
 const AppWrapper = styled.div`
@@ -13,6 +15,7 @@ const App = () => {
   return (
     <AppWrapper>
       <Eligibility />
+      <ToastContainer hideProgressBar={true} />
     </AppWrapper>
   );
 };
