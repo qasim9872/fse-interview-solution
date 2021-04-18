@@ -10,14 +10,15 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tradeledger.cards.eligibility.common.configuration.ConfigurationService;
 import com.tradeledger.cards.eligibility.common.domain.Applicant;
 
 @Service
 public class OrchestratorService {
 
-	private static final String THIRD_PARTY_BASE_URL = "http://localhost:8080";
 	public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-	private static final String THIRD_PARTY_ELIGIBILITY_CHECK_URL = THIRD_PARTY_BASE_URL + "/eligibility/check";
+
+	public String FullEligibilityCheckUrl;
 
 	@Autowired
 	private OkHttpClient httpClient;
@@ -25,10 +26,14 @@ public class OrchestratorService {
 	@Autowired
 	private ObjectMapper objMapper;
 
+	@Autowired
+	private ConfigurationService configurationService;
+
 	public String orchestrateEligibilityCheck(Applicant applicant) throws Exception {
 
 		RequestBody body = RequestBody.Companion.create(objMapper.writeValueAsString(applicant), JSON);
-		Request request = new Request.Builder().url(THIRD_PARTY_ELIGIBILITY_CHECK_URL).post(body).build();
+		String eligibilityCheckUrl = configurationService.getThirdPartyEligibilityCheckUrl();
+		Request request = new Request.Builder().url(eligibilityCheckUrl).post(body).build();
 
 		Response response = httpClient.newCall(request).execute();
 
