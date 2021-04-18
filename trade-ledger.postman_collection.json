@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "fe90d65b-ffe0-414f-a688-ea4bb5f7851d",
+		"name": "trade-ledger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "orchestrate-eligibility-check",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var names = pm.environment.get(\"names\");",
+							"var count = pm.environment.get(\"count\");",
+							"",
+							"if(!names || !names.length) {",
+							"    names = [\"Boris\", \"Angela\", \"Theresa\"];",
+							"    console.log(\"initializing names\", {names});",
+							"    pm.environment.set(\"names\", names);",
+							"}",
+							"",
+							"if(!count) {",
+							"    count = 10;",
+							"    console.log(\"initializing count\", {count});",
+							"    pm.environment.set(\"count\", count);",
+							"}",
+							"",
+							"console.log(\"Pre-request\", {count, names});",
+							"",
+							"var name = names[count % names.length];",
+							"console.log(\"setting name\", {name});",
+							"",
+							"count = count -1;",
+							"pm.environment.set(\"count\", count);",
+							"pm.environment.set(\"name\", name);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var currentName = pm.environment.get(\"name\");",
+							"console.log(\"Test file\");",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"console.log({currentName})",
+							"if (currentName === \"Boris\") {",
+							"    pm.test(\"should have C1 if name is Boris \", function () {",
+							"        console.log(`running test for Boris`);",
+							"        const result = pm.response.json();",
+							"        pm.expect(result.eligibleCards).to.be.an('array');",
+							"        pm.expect(result.eligibleCards[0]).to.eql('C1');",
+							"    })",
+							"}",
+							"",
+							"if (currentName === \"Angela\") {",
+							"    pm.test(\"should have C1 & C2 if name is Angela \", function () {",
+							"        console.log(`running test for Angela`);",
+							"        const result = pm.response.json();",
+							"        pm.expect(result.eligibleCards).to.be.an('array');",
+							"        pm.expect(result.eligibleCards[0]).to.eql('C1');",
+							"        pm.expect(result.eligibleCards[1]).to.eql('C2');",
+							"    })",
+							"}",
+							"",
+							"if (currentName === \"Theresa\") {",
+							"    pm.test(\"should have C2 if name is Theresa \", function () {",
+							"        console.log(`running test for Theresa`);",
+							"        const result = pm.response.json();",
+							"        pm.expect(result.eligibleCards).to.be.an('array');",
+							"        pm.expect(result.eligibleCards[0]).to.eql('C2');",
+							"    })",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"{{name}}\",\n  \"email\": \"String\",\n  \"address\": \"String\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/orchestrate/eligibility-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orchestrate",
+						"eligibility-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
