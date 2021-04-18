@@ -37,6 +37,7 @@ const EligibilityApplication = () => {
           onChange={handleChange}
           value={values.name}
           placeholder="Name"
+          autoComplete="name"
         />
         <FormInput
           type="email"
@@ -45,6 +46,7 @@ const EligibilityApplication = () => {
           onChange={handleChange}
           value={values.email}
           placeholder="Email"
+          autoComplete="email"
         />
         <FormInput
           type="text"
@@ -53,6 +55,7 @@ const EligibilityApplication = () => {
           onChange={handleChange}
           value={values.address}
           placeholder="Address"
+          autoComplete="street-address"
         />
         <SubmitButton text="Submit" />
       </form>

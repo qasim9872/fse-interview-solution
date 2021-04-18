@@ -29,6 +29,7 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<any>) => void;
   value: string;
   placeholder?: string;
+  autoComplete?: string;
 }
 
 const FormInput = (props: InputProps) => {
