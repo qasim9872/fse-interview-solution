@@ -5,6 +5,8 @@ import styled from "styled-components";
 import FormInput from "../../../DesignSystem/Form/FormInput";
 import SubmitButton from "../../../DesignSystem/Form/SubmitButton";
 import Title from "../../../DesignSystem/Title";
+import { useEligibilityStoreHook } from "../Eligibility.store";
+import { logger } from "../../../utils/logger";
 
 const FormWrapper = styled.div`
   flex: 1 1 auto;
@@ -18,14 +20,23 @@ interface FormValues {
 }
 
 const EligibilityApplication = () => {
+  const [eligibilityState, setEligibilityState] = useEligibilityStoreHook();
+
   const { handleChange, handleSubmit, values } = useFormik<FormValues>({
     initialValues: {
       name: "",
       email: "",
       address: "",
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (applicationData) => {
+      logger.info("submitting application data", applicationData);
+      setEligibilityState((previousState) => ({
+        ...previousState,
+        applicationData,
+      }));
+    },
   });
+
   return (
     <FormWrapper>
       <Title>Cards</Title>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useEligibilityStoreHook } from "../Eligibility.store";
 
 const ResultsWrapper = styled.div`
   flex: 1 1 auto;
@@ -11,7 +12,13 @@ const ResultsWrapper = styled.div`
 `;
 
 const EligibilityResults = () => {
-  return <ResultsWrapper></ResultsWrapper>;
+  const [eligibilityState] = useEligibilityStoreHook();
+
+  return (
+    <ResultsWrapper>
+      {JSON.stringify(eligibilityState.applicationData)}
+    </ResultsWrapper>
+  );
 };
 
 export default EligibilityResults;
