@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { ORCHESTRATE_ELIGIBILITY_CHECK } from "../../config/endpoint.config";
+import React, { useEffect, useState } from "react";
+import ReactLoading from "react-loading";
 
+import { ORCHESTRATE_ELIGIBILITY_CHECK } from "../../config/endpoint.config";
 import View from "../../DesignSystem/View";
 import WrapComponentInProvidersHoc from "../../utils/hoc/wrap-component-in-providers";
 import { logger } from "../../utils/logger";
@@ -13,6 +14,7 @@ import EligibilityResults from "./EligibilityResults";
 
 const Eligibility = () => {
   const [eligibilityState, setEligibilityState] = useEligibilityStoreHook();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (eligibilityState.isReadyToBeSubmitted) {
@@ -21,6 +23,8 @@ const Eligibility = () => {
       // call the orchestrator api
       const orchestrateEligibilityCheck = async () => {
         logger.info("orchestrating eligibility check");
+
+        setIsLoading(true);
         const response = await fetch(ORCHESTRATE_ELIGIBILITY_CHECK, {
           method: "post",
           headers: {
@@ -33,6 +37,7 @@ const Eligibility = () => {
         const { eligibleCards } = await response.json();
 
         logger.info("eligible cards: ", eligibleCards);
+        setIsLoading(false);
 
         setEligibilityState((previousState) => ({
           ...previousState,
@@ -46,6 +51,15 @@ const Eligibility = () => {
 
   return (
     <View>
+      {isLoading && (
+        <ReactLoading
+          className="absolute-loading-spinner"
+          type={"spin"}
+          color={"yellow"}
+          height={"20%"}
+          width={"20%"}
+        />
+      )}
       <EligibilityApplication />
       <EligibilityResults />
     </View>
