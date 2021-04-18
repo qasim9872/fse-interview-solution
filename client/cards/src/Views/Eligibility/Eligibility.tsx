@@ -18,11 +18,11 @@ const Eligibility = () => {
 
   useEffect(() => {
     if (eligibilityState.isReadyToBeSubmitted) {
-      logger.info("eligibility application is ready to be submitted");
+      logger.debug("eligibility application is ready to be submitted");
 
       // call the orchestrator api
       const orchestrateEligibilityCheck = async () => {
-        logger.info("orchestrating eligibility check");
+        logger.info("Submitting application data");
 
         setIsLoading(true);
         const response = await fetch(ORCHESTRATE_ELIGIBILITY_CHECK, {
@@ -36,8 +36,14 @@ const Eligibility = () => {
         });
         const { eligibleCards } = await response.json();
 
-        logger.info("eligible cards: ", eligibleCards);
         setIsLoading(false);
+        logger.info("Application is successfully submitted. ", eligibleCards);
+        const isPlural = eligibleCards.length !== 1;
+        logger.info(
+          `You're eligible for ${eligibleCards.length} card${
+            isPlural ? "s" : ""
+          }`
+        );
 
         setEligibilityState((previousState) => ({
           ...previousState,

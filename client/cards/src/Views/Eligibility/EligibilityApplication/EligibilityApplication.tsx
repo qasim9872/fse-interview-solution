@@ -28,7 +28,18 @@ const EligibilityApplication = () => {
   const { handleChange, handleSubmit, values } = useFormik<FormValues>({
     initialValues: INITIAL_ELIGIBILITY_STATE.applicationData,
     onSubmit: (applicationData, { resetForm }) => {
-      logger.info("submitting application data", applicationData);
+      if (eligibilityState.isReadyToBeSubmitted) {
+        logger.warn("Please wait for the application to be submitted");
+        return;
+      }
+
+      const isFilled = Object.values(applicationData).every(Boolean);
+      if (!isFilled) {
+        logger.warn("Please fill out all the fields");
+        return;
+      }
+
+      logger.debug("Submitting application data", applicationData);
       setEligibilityState((previousState) => ({
         ...previousState,
         isReadyToBeSubmitted: true,
