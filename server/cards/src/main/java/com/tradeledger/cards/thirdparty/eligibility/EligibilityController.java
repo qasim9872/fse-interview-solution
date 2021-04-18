@@ -18,12 +18,12 @@ public class EligibilityController {
 
 	@Autowired
 	private EligibilityService service;
-	
+
 	@PostMapping(path = "check", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public Eligibility checkEligibility(@Valid @RequestBody Applicant applicant) {
-		
+	public Eligibility checkEligibility(@Valid @RequestBody Applicant applicant) throws InterruptedException {
+		// Thread.sleep(9000);
 		return service.checkEligibilityFor(applicant);
-		
+
 	}
-	
+
 }
